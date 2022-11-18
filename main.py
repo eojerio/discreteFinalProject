@@ -4,7 +4,7 @@ import pandas as pd
 df= pd.read_excel('Test-Data-for-Discrete-Hoho.xlsx');
 
 #printing table value
-print(df);
+#print(df);
 
 # school list
 schools = ["Comembo ES (M)",
@@ -40,22 +40,57 @@ schools = ["Comembo ES (M)",
         "Bataan Sea Turtles (P)",
         "La Union (P)"]
 
-# empty list
+## empty list
+#gender_status
+gender_status = []
+
+#schools list
 school_comemboES = []
 school_iCareAlot = []
 
 # resets index
 df = df.reset_index()
 
-# appending to empty list
-for row in df['P1']:
-    if(row == schools[0]):
-        school_comemboES.append(row)
+#gender distribtuion list
+male_count = 0
+female_count = 0
+counter_school_1 = 0
+counter_school_2 = 0
 
-for row in df['P1']:
-    if(row == schools[29]):
-        school_iCareAlot.append(row)
+#Iterate and save the P1 value as row to compare school
+# for row in df['P1']:
+#         # checks if match
+#         if (row == schools[0]):
+#                 if (df['Gender'].iloc[counter_school_1] == 'Male'):
+#                         male_count += 1
+#                 elif (df['Gender'].iloc[counter_school_1] == 'Female'):
+#                         female_count += 1
+#                 else:
+#                         print("Invalid Gender")
+#                 # gets the student number and stores it into school list
+#                 school_comemboES.append(int(df['Student_Number'].iloc[counter_school_1]))
+#         counter_school_1 += 1
 
-print(school_comemboES)
+#Iterate and save the P1 value as row to compare school
+for row in df['P1']:
+        if (row == schools[29]):
+                if (df['Gender'].iloc[counter_school_2] == 'Male'):
+                        male_count += 1
+                elif (df['Gender'].iloc[counter_school_2] == 'Female'):
+                        female_count += 1
+                else:
+                        print("Invalid Gender")
+                # gets the student number and stores it into school list
+                school_iCareAlot.append(int(df['Student_Number'].iloc[counter_school_2]))
+        counter_school_2 += 1
+
+print((df['Gender'] == 'Male').sum())
+print((df['Gender'] == 'Female').sum())
+df2 = df[['Student_Number']].copy()
+# print(df2)
+print("length is: " + str(len(df2.index)))
+
+#For checking list print
+# print(school_comemboES)
 print(school_iCareAlot)
 
