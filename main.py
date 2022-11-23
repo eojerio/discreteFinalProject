@@ -1,7 +1,7 @@
 import pandas as pd
 
 # dataframe
-df= pd.read_excel('Test-Data-for-Discrete-Hoho.xlsx');
+df = pd.read_excel('Test-Data-for-Discrete-Hoho.xlsx');
 
 #printing table value
 #print(df);
@@ -118,6 +118,13 @@ master_list.append(school_launion)
 # resets index
 df = df.reset_index()
 
+#METHODS
+def init_gender():
+        for x in df['P1']:
+                gender_status.append("False")
+
+
+
 #Iterate and save the P1 value as row to compare school
 # for row in df['P1']:
 #         # checks if match
@@ -132,22 +139,27 @@ df = df.reset_index()
 #                 school_comemboES.append(int(df['Student_Number'].iloc[counter_school_1]))
 #         counter_school_1 += 1
 
-
-
+#gender default list values
+init_gender()
 
 #gender distribtuion list
 male_count = 0
 female_count = 0
 counter_list = 0
 counter_school = 0
+counter_student = 0
+
 #Iterate and save the P1 value as row to compare school
 while(True):
         if(counter_list < 32):
                 counter_school = 0
+                counter_student = 0
                 for row in df['P1']:
-                        if (row == schools[counter_list]):
+                        if (row == schools[counter_list] and gender_status[counter_student] == 'False'):
                                 # gets the student number and stores it into school list
                                 master_list[counter_list].append(int(df['Student_Number'].iloc[counter_school]))
+                                gender_status[counter_student] = 'True'
+                        counter_student += 1
                         counter_school += 1
                 counter_list += 1
         else:
@@ -161,8 +173,6 @@ while(True):
 # # print(df2)
 # print("length is: " + str(len(df2.index)))
 
-#For checking list print
-# print(school_comemboES)
 
 #Printing List
 print()
@@ -170,4 +180,12 @@ print_counter = 0
 for x in master_list:
         print(master_list[print_counter])
         print_counter+=1
+
+print()
+print(len(gender_status))
+print(gender_status)
+
+
+
+
 
