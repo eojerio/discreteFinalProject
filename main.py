@@ -3,48 +3,48 @@ import pandas as pd
 # dataframe
 df = pd.read_excel('Test-Data-for-Discrete-Hoho.xlsx');
 
-#printing table value
-#print(df);
+# printing table value
+# print(df);
 
 # school list
 schools = ["Comembo ES (M)",
-        "Nueva Ecija Girls' Home (P)",
-        "Young Focus:Love2Learn (M)",
-        "Bahay Tuluyan Laguna (P)",
-        "Philippine Inst. for the Deaf PID (M)",
-        "Project Pearl Bulacan (P)",
-        "Mad Travel Subic (P)",
-        "RED 2 (Renovate to Educate) (M)",
-        "Hospicio de San Jose: Welfare Institution (M)",
-        "SBP (M)",
-        "Kids International (M)",
-        "SPECS Tramo (M)",
-        "Tarlac Farming Community (P)",
-        "Papaya Academy HS students (M)",
-        "Project Best at Buting ES (M)",
-        "Baguio Bethesda School (P)",
-        "Stepping Stones (M)",
-        "GK Muntinlupa (M)",
-        "Botolan Aeta Farming Community (P)",
-        "Special Olympics w/ADB (M)",
-        "CJ Learning Rizal (P)",
-        "RED 1 (Renovate to Educate) (M)",
-        "Banawe School and Rice Terraces (P)",
-        "Papaya Academy ES Students (M)",
-        "SPECS Pasay (M)",
-        "Estancia Elementary School Panay (P)",
-        "Stairway Foundation (P)",
-        "Eco Stairway (P)",
-        "rED Baguio (P)",
-        "ICARE A.L.O.T (P)",
-        "Bataan Sea Turtles (P)",
-        "La Union (P)"]
+           "Nueva Ecija Girls' Home (P)",
+           "Young Focus:Love2Learn (M)",
+           "Bahay Tuluyan Laguna (P)",
+           "Philippine Inst. for the Deaf PID (M)",
+           "Project Pearl Bulacan (P)",
+           "Mad Travel Subic (P)",
+           "RED 2 (Renovate to Educate) (M)",
+           "Hospicio de San Jose: Welfare Institution (M)",
+           "SBP (M)",
+           "Kids International (M)",
+           "SPECS Tramo (M)",
+           "Tarlac Farming Community (P)",
+           "Papaya Academy HS students (M)",
+           "Project Best at Buting ES (M)",
+           "Baguio Bethesda School (P)",
+           "Stepping Stones (M)",
+           "GK Muntinlupa (M)",
+           "Botolan Aeta Farming Community (P)",
+           "Special Olympics w/ADB (M)",
+           "CJ Learning Rizal (P)",
+           "RED 1 (Renovate to Educate) (M)",
+           "Banawe School and Rice Terraces (P)",
+           "Papaya Academy ES Students (M)",
+           "SPECS Pasay (M)",
+           "Estancia Elementary School Panay (P)",
+           "Stairway Foundation (P)",
+           "Eco Stairway (P)",
+           "rED Baguio (P)",
+           "ICARE A.L.O.T (P)",
+           "Bataan Sea Turtles (P)",
+           "La Union (P)"]
 
 ## empty list
-#gender_status
+# gender_status
 gender_status = []
 
-#schools list
+# schools list
 master_list = []
 
 school_comemboES = []
@@ -114,18 +114,17 @@ master_list.append(school_iCareAlot)
 master_list.append(school_bataaan)
 master_list.append(school_launion)
 
-
 # resets index
 df = df.reset_index()
 
-#METHODS
+
+# METHODS
 def init_gender():
-        for x in df['P1']:
-                gender_status.append("False")
+    for x in df['P1']:
+        gender_status.append("False")
 
 
-
-#Iterate and save the P1 value as row to compare school
+# Iterate and save the P1 value as row to compare school
 # for row in df['P1']:
 #         # checks if match
 #         if (row == schools[0]):
@@ -139,32 +138,31 @@ def init_gender():
 #                 school_comemboES.append(int(df['Student_Number'].iloc[counter_school_1]))
 #         counter_school_1 += 1
 
-#gender default list values
+# gender default list values
 init_gender()
 
-#gender distribtuion list
+# gender distribtuion list
 male_count = 0
 female_count = 0
 counter_list = 0
 counter_school = 0
 counter_student = 0
 
-#Iterate and save the P1 value as row to compare school
-while(True):
-        if(counter_list < 32):
-                counter_school = 0
-                counter_student = 0
-                for row in df['P1']:
-                        if (row == schools[counter_list] and gender_status[counter_student] == 'False'):
-                                # gets the student number and stores it into school list
-                                master_list[counter_list].append(int(df['Student_Number'].iloc[counter_school]))
-                                gender_status[counter_student] = 'True'
-                        counter_student += 1
-                        counter_school += 1
-                counter_list += 1
-        else:
-                break
-
+# Iterate and save the P1 value as row to compare school
+# while(True):
+#         if(counter_list < 32):
+#                 counter_school = 0
+#                 counter_student = 0
+#                 for row in df['P1']:
+#                         if (row == schools[counter_list] and gender_status[counter_student] == 'False'):
+#                                 # gets the student number and stores it into school list
+#                                 master_list[counter_list].append(int(df['Student_Number'].iloc[counter_school]))
+#                                 gender_status[counter_student] = 'True'
+#                         counter_student += 1
+#                         counter_school += 1
+#                 counter_list += 1
+#         else:
+#                 break
 
 
 # print((df['Gender'] == 'Male').sum())
@@ -174,18 +172,50 @@ while(True):
 # print("length is: " + str(len(df2.index)))
 
 
-#Printing List
-print()
-print_counter = 0
-for x in master_list:
-        print(master_list[print_counter])
-        print_counter+=1
+# Printing List
+# print()
+# print_counter = 0
+# for x in master_list:
+#         print(master_list[print_counter])
+#         print_counter+=1
+#
+# print()
+# print(len(gender_status))
+# print(gender_status)
 
-print()
-print(len(gender_status))
-print(gender_status)
+# CODE FOR SORTING GENDER IN 1 SCHOOL
+temp_list = []
+
+print(df['Gender'].head(10))
+
+def jedd_sort_gender():
+        # print((df['Gender'] == 'Male').sum())
+        # print((df['Gender'] == 'Female').sum())
+
+        student_gender = ""
+
+        max = len(df)
+
+        count = 0
+
+        while count < max:
+                index = 0
+                for row in df['Gender']:
+                        # ROW CONTAINS GENDER
+                        if (row != student_gender and gender_status[index] == 'False'):
+                                print("")
+                                print("EXCEL GENDER: " + df['Gender'].iloc[index] + " : " + row + " : " + gender_status[index] + " : " + str(df['Student_Number'].iloc[index]))
+                                temp_list.append(df['Student_Number'].iloc[index])
+                                gender_status[index] = 'True'
+                                student_gender = row
+                                break
+
+                        index += 1
 
 
+                count += 1
 
 
-
+jedd_sort_gender()
+print(temp_list)
+print(len(temp_list))
