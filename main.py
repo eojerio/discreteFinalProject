@@ -148,46 +148,59 @@ counter_list = 0
 counter_school = 0
 counter_student = 0
 
+student_gender = ""
+
+
+
+student_gender_list = []
+
+def init_school_gender():
+    for x in df['P1']:
+        student_gender_list.append("")
+
+init_school_gender()
+
 # Iterate and save the P1 value as row to compare school
-# while(True):
-#         if(counter_list < 32):
-#                 counter_school = 0
-#                 counter_student = 0
-#                 for row in df['P1']:
-#                         if (row == schools[counter_list] and gender_status[counter_student] == 'False'):
-#                                 # gets the student number and stores it into school list
-#                                 master_list[counter_list].append(int(df['Student_Number'].iloc[counter_school]))
-#                                 gender_status[counter_student] = 'True'
-#                         counter_student += 1
-#                         counter_school += 1
-#                 counter_list += 1
-#         else:
-#                 break
+while(True):
+        if(counter_list < 32):
+                counter_school = 0
+                counter_student = 0
+                #CHECKS FIRST PRIORITY
+                for row in df['P1']:
 
+                        #CHECKS IF ROW IS EQUAL TO LIST OF SCHOOL
+                        if (row == schools[counter_list]):
 
-# print((df['Gender'] == 'Male').sum())
-# print((df['Gender'] == 'Female').sum())
-# df2 = df[['Student_Number']].copy()
-# # print(df2)
-# print("length is: " + str(len(df2.index)))
+                            # GENDER ALGORITHM ILAGAY DITO
+                            if (df['Gender'].iloc[counter_school] != student_gender_list[counter_list] and gender_status[counter_school] == 'False'):
+                                print("")
+                                print("EXCEL GENDER: " + df['Gender'].iloc[counter_school] + " : " + row + " : " + gender_status[counter_school] + " : " + str(df['Student_Number'].iloc[counter_school]))
+                                master_list[counter_list].append(str(int(df['Student_Number'].iloc[counter_school])) + " " + df['Gender'].iloc[counter_school])
+                                gender_status[counter_student] = 'True'
+
+                                student_gender_list[counter_list] = df['Gender'].iloc[counter_school]
+
+                        counter_student += 1
+                        counter_school += 1
+
+                counter_list += 1
+        else:
+                break
 
 
 # Printing List
-# print()
-# print_counter = 0
-# for x in master_list:
-#         print(master_list[print_counter])
-#         print_counter+=1
-#
-# print()
-# print(len(gender_status))
-# print(gender_status)
+print()
+print_counter = 0
+for x in master_list:
+        print(master_list[print_counter])
+        print_counter+=1
+
+print()
+print(len(gender_status))
+print(gender_status)
 
 # CODE FOR SORTING GENDER IN 1 SCHOOL
 temp_list = []
-
-print(df['Gender'].head(10))
-
 def jedd_sort_gender():
         # print((df['Gender'] == 'Male').sum())
         # print((df['Gender'] == 'Female').sum())
@@ -214,8 +227,8 @@ def jedd_sort_gender():
 
 
                 count += 1
-
-
-jedd_sort_gender()
-print(temp_list)
-print(len(temp_list))
+#
+#
+# jedd_sort_gender()
+# print(temp_list)
+# print(len(temp_list))
